@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+	{% block content %}
+		<h1 class="ui header">Login</h1>
+		{% if form.errors %}
+		<h3>{{ form.errors }}</h3>
+		{% endif %}
+		<div class="ui container">
+			<form method="post" class="ui form">
+				{% csrf_token %}
+				<div class="ui field">
+					<label for="username">Username</label>
+					<input type="text" name="username">
+				</div>
+				<div class="ui field">
+					<label for="password">Password</label>
+					<input type="password" name="password">
+				</div>
+				<input type="submit" value="Login" class="ui blue button">
+			</form>
+		</div>
+	{% endblock %}

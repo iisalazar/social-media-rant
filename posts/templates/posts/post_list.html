@@ -1,0 +1,18 @@
+{% extends "posts/post_base.html" %}
+	{% block left_part %}
+		{% if not user.is_authenticated %}
+		<h1 class="ui header">Welcome</h1>
+		{% endif %}
+	{% endblock %}
+	{% block feed %}
+		<ul>
+			{% for post in post_list %}
+			<div class="ui segment">
+				{% include "posts/_post.html" %}
+			</div>
+			{% endfor %}
+		</ul>
+	{% endblock %}
+	{% block right_part %}
+	
+	{% endblock %}

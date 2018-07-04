@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>{% block title %} {% endblock %}</title>
+	<!--<link rel="stylesheet" type="text/css" href="../static/semantic/semantic.min.css">-->
+	<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	
+</head>
+<body>
+	<div class="nav">
+		<div class="ui primary fixed menu" id="main-menu">
+			<a href="{% url 'home' %}" class="ui item logo text">schoolrant</a>
+			<div class="ui right item">
+				{% if user.is_authenticated %}
+				<a href="{% url 'posts:create_post' %}" class="ui item">Create Post</a>
+				<a href="{% url 'accounts:logout' %}" class="ui item">Log Out</a>
+				<a href="{% url 'posts:user_posts' username=user.username %}" class="ui item">{{ user.username }}</a>
+				{% else %}
+				<a href="{% url 'accounts:login' %}" class="ui item">Log In</a>
+				<a href="{% url 'accounts:signup' %}" class="ui item">Sign Up</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="ui content">
+		{% block content %}
+		{% endblock %}
+	</div>
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+</body>
+</html>

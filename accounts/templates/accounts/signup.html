@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+	{% block content %}
+	<h1>Sign Up</h1>
+	{% if form.errors %}
+		<h1>{{ form.errors }}</h1>
+	{% endif %}
+	<div class="ui container">
+		<form method="POST" class="ui form">
+			{% csrf_token %}
+			<div class="ui field">
+				<label for="username">Username</label>
+				<input type="text" name="username">
+			</div>
+			<div class="ui field">
+				<label for="email">Email</label>
+				<input type="text" name="email">
+			</div>
+			<div class="ui field">
+				<label for="password1">Password</label>
+				<input type="password" name="password1">
+			</div>
+			<div class="ui field">
+				<label for="password2">Confirm Password</label>
+				<input type="password" name="password2">
+			</div>
+			<div class="ui field">
+				{{ form2.as_p }}
+			</div>
+			<input type="submit" value="Sign Up" class="ui green button">
+		</form>	
+	</div>
+	{% endblock %}

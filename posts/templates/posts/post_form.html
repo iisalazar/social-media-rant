@@ -1,0 +1,19 @@
+{% extends "posts/post_base.html" %}
+	{% block left_part %}
+		{% if object %}
+		<h1>Update Post</h1>
+		{% else %}
+		<h1>New Post</h1>
+		{% endif %}
+	{% endblock %}
+	{% block feed %}
+		<form class="ui form" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			{% if object %}
+			<input type="submit" value="Update" class="ui orange button">
+			{% else %}
+			<input type="submit" value="Post" class="ui blue button">
+			{% endif %}
+		</form>
+	{% endblock %}

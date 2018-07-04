@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+	{% block content %}
+		<div class="ui centered grid">
+			<div class="ui row">
+				<div class="ui three wide computer only container column">
+					<div class="ui segment">
+						<div class="ui header">Profile </div>
+						<a href="{% url 'posts:user_posts' username=user.username %}" class="ui header">{{ user.username }}</a>
+						{% block left_part %}
+						{% endblock %}
+					</div>
+				</div>
+				<div class="ui eight wide computer sixteen wide tablet container center aligned column">
+					{% block feed %}
+					{% endblock %}
+				</div>
+				<div class="ui three wide computer only container center aligned column">
+					<div class="ui segment">
+						{% block right_part %}
+						{% endblock %}
+						<div class="ui grid">
+							<div class="equal width row">
+								<div class="column">
+									
+								</div>
+								<div class="column">
+									Column 2
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}

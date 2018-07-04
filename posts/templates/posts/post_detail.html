@@ -1,0 +1,50 @@
+{% extends "posts/post_base.html" %}
+	{% block feed %}
+		<div class="ui feed">
+			<div class="event">
+				<div class="content">
+					<div class="summary">
+						<a href="{% url 'posts:user_posts' username=post.user.username %}">{{ post.user.username }}</a>
+						<div class="date">
+						{{ post.created_date }}
+						</div>
+					</div>
+					<div class="extra text">
+						{{ post.message }}
+					</div>
+				</div>
+			</div>
+		</div>
+		{% if user.is_authenticated %}
+		<form class="ui form" method="POST" action="{% url 'posts:add_comment' username=user.username pk=post.pk %}">
+			{% csrf_token %}
+			<div class="ui inline field">
+				<label for="message">Comment</label>
+				<input type="text" name="message" placeholder="Say something...">
+				<input type="submit" value="Comment" class="ui green button">	
+			</div>
+		</form>
+		{% endif %}
+		<div class="ui left aligned segment">
+			<div class="ui comments">
+				<h3 class="ui dividing header">Comments</h3>
+				{% for comment in post.comments.all %}
+					<div class="comment">
+						<div class="content">
+							<a href="author">{{ comment.user.username }}</a>
+							<div class="metadata">
+								<span class="date">
+									{{ comment.date_created|timesince }}
+								</span>
+							</div>
+							<div class="text">
+								{{ comment.message }}
+							</div>
+						</div>		
+					</div>
+				{% empty %}
+				<h5 class="ui header">No comments yet</h5>
+				{% endfor %}
+			</div>
+		</div>
+	{% endblock %}

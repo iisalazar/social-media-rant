@@ -1,0 +1,9 @@
+{% extends "posts/post_base.html" %}
+	{% block post %}
+		<h1>Confirm delete</h1>
+		<form method="post"> 
+			{% csrf_token %}
+			<h3 class="ui header">Are you sure you want to delete {{object}}</h3>
+			<input type="submit" value="Delete" class="ui delete button">
+		</form>
+	{% endblock %}

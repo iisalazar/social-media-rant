@@ -1,0 +1,18 @@
+<div class="ui feed">
+	<div class="event">
+		<div class="content">
+			<div class="summary">
+				<a href="{% url 'posts:user_posts' username=post.user.username %}">{{ post.user.username }}</a>
+				<div class="date">
+				{{ post.created_date|timesince }}
+				</div>
+			</div>
+			<div class="extra text">
+				<a href="{% url 'posts:post_details' username=post.user.username pk=post.pk %}">{{ post.message }}</a>
+			</div>
+			<div class="meta">
+				Comments: {{ post.comments.count }} 
+			</div>
+		</div>
+	</div>
+</div>
